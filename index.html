@@ -154,9 +154,12 @@
 							<div class="pageSubSubTitle">前提：音源フォルダ構成規則・ファイル命名規則の追加</div>
 							<div class="pageSubSubContent">
 								UTAU\voice\音源名\HANE以下に下記のファイル<br>
-								・初期状態の学習記録ファイル（learningRecord.ini）<br>
-								・学習記録ファイルの作成に使用したoto.ini（[音源フォルダ内の区分けフォルダ名]oto.ini）<br>
+								・初期状態の学習記録ファイル（initialLearningRecord.ini）<br>
+								・配布前の学習が含まれる学習記録ファイル（learningRecord.ini）<br>
+								・学習記録ファイルの作成に使用した区分けフォルダ別のoto.ini（[音源フォルダ内の区分けフォルダ名]oto.ini）<br>
+								・区分けフォルダ別のoto.iniがマージされたファイル（学習用oto.ini）<br>
 								・音源スペック・簡易署名・特殊音素説明（html,txt,pdf等）などが保存される技術情報ファイル（technicalInfo.bin）<br>
+								・技術情報ファイルの電子署名ファイル（technicalInfo.key）<br>
 								・【optional】上記「技術情報ファイル」特殊音素説明で定義されたhtml,txt,pdf等のファイル<br>
 							</div>
 							<div class="pageSubSubTitle">追加される機能</div>
@@ -165,6 +168,7 @@
 								・学習記録ファイルの初期化<br>
 								・バックアップ機能（ファイルあて先：UTAU\plugins\CVtoVCVCwithAI\学習記録フォルダ\[音源名][日付].back)<br>
 								・技術情報ファイル（technicalInfo.bin）のビュアー<br>
+								・技術情報ファイルの電子署名の検証<br>
 								・技術情報ファイル（technicalInfo.bin）が存在しない場合、旧バージョンのプラグインへの誘導<br>
 							</div>
 							<div class="pageSubTitle">HANASU用VCVC音源マニュアル - Ver.2.0.0　2017年内と順次</div>
