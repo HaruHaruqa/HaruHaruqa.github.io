@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<script src="js/jquery-1.12.0.js"></script>
 		<script src="js/animation.js"></script>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		<title>HANASU用VCVC音源マニュアル</title>
 	</head>
 	<body>
@@ -79,13 +80,698 @@
 						</div>
 					</div>
 					<div class="page" id="page3">
-						<div class="pageTitle">原音設定規則 公開停止中</div>
+						<div class="pageTitle">原音設定規則</div>
+						基本的には先行発声位置が正しければ問題なく使えるはずですが、より性能を上げる、ユーザーが扱いやすくするために、ここに書かれた規則通りに原音設定を行っていただくのが望ましいです。
 						<div class="pageContents">
+							<div class="pageSubTitle">エイリアス規則</div>
+							<div class="pageSubSubTitle">VCVCエイリアス</div>
+							<div class="pageSubSubContent">
+								基本的には、「[前の音素の母音（前の音素が無声化されている場合、前の音素の子音）] [ （半角スペース）][ひらがな][次の音素の子音]」の形をとります。ローマ字と発音の対応は、別ページ「発音表記対応表」を参照してください。
+							</div>
+							<div class="pageSubSubTitle">語頭</div>
+							<div class="pageSubSubContent">
+								語頭はひらがな（単独音エイリアス）の前に、通常の連続音エイリアスと同じく「-」（半角ハイフン）と半角スペースを記述します。<br>
+							</div>
+							<div class="pageSubSubTitle">語尾</div>
+							<div class="pageSubSubContent">
+								語尾はひらがなの右に「R」（半角英数）を記述します。
+							</div>
+							<div class="pageSubSubTitle">促音</div>
+							<div class="pageSubSubContent">
+								促音（「っ」のこと）の前は、ひらがなの後に「Q」（半角英数）を記述します。促音の後は、ひらがなの前に「Q」（半角英数）を記述します。
+							</div>
+							<div class="pageSubSubTitle">無声化</div>
+							<div class="pageSubSubContent">
+								母音が無声化（欠落）している場合、もしくはきわめて母音が短い場合は、ひらがなの後に「C」（半角英数）を記述します。
+							</div>
+							<div class="pageSubSubContent">
+								<br>
+								例1）解説してみた（かいせつしてみた）→「- かi,a いs,i せts,e つCsy,ts しCt,sy てmy,e みt,i たR」<br>
+								例2）学校（がっこう）→「- がQk,aQ こo,o おR」<br>
+								例3）そうです→「- そo,o おd,o でs,e すCR」<br>
+								無声化が語尾で発生した場合はCを先に記述します。<br>
+								※注意：自動生成、出力されたoto.iniの出力では、ひらがな通りのエイリアスとなるため、発音にあわせて修正してください。（たとえば例2は「- がQk,aQ こu,o うR」となっています。）<br>
+							</div>
+							<div class="pageSubSubTitle">oto.iniの制約</div>
+							<div class="pageSubSubContent">
+								エイリアスに重複はないものとする<br>
+								エイリアスは原音ごとに、左から順に設定されてるものとする<br>
+								エイリアスは必ずひらがなと半角スペースを含む<br>
+								エイリアスの接尾辞接頭辞にひらがなを含まない
+							</div>
+
+							<div class="pageSubTitle">原音設定の準備</div>
+							原音設定はsetParamを用いることを推奨します。<br>
+							<div class="pageSubSubTitle">推奨setParam設定</div>
+							<div class="pageSubSubContent">
+								テンポを固定していない場合はオートフォーカスをはずしたほうが見やすいです。<br>
+								オートフォーカスするほうが慣れているという場合はオートフォーカスをつけたままでも大丈夫です。<br>
+								<img src="img/原音設定規則_setParam設定1.PNG" width="100%"><br>
+								相対的な位置関係の少なくとも一方にチェックを入れてください。<br>
+								下記「初期値」を保つことが出来ます。<br>
+								<img src="img/原音設定規則_setParam設定2.PNG" width="100%"><br>
+								<img src="img/原音設定規則_setParam設定3.PNG" width="100%"><br>
+							</div>
+
+							<div class="pageSubTitle">基本形</div>
+							<div class="pageSubSubTitle">左ブランク</div>
+							<div class="pageSubSubContent">
+								語頭の場合で子音が長い場合は子音の始まり部分に置く。<br>
+								語頭の場合で子音が短い場合は初期値のまま。<br>
+								語頭の場合で母音の場合は短くする。<br>
+								語中で初期値のままだと左の子音が入る場合は左の子音が入らないように置く。
+							</div>
+							<div class="pageSubSubTitle">オーバーラップ</div>
+							<div class="pageSubSubContent">
+								子音が長い場合は子音のスペクトルがはっきりする位置、もしくは中央に置き左ブランク⇔オーバーラップ間に十分な長さをとるように置く。<br>
+								子音が短い場合もしくは、語頭で母音の場合は、左ブランク⇔オーバーラップ間が短めになるよう置く。<br>
+								それ以外の場合は初期値のまま。
+							</div>
+							<div class="pageSubSubTitle">先行発声</div>
+							<div class="pageSubSubContent">
+								子音と母音の間もしくは母音と母音の間に置く。<br>
+								語頭で母音の場合は、母音のスペクトルがはっきりする位置に置く。
+							</div>
+							<div class="pageSubSubTitle">子音部</div>
+							<div class="pageSubSubContent">
+								子音部⇔右ブランク間が十分広い場合は初期値のまま。<br>
+								子音部⇔右ブランク間が短い場合は母音のスペクトルが安定する位置に置く。
+							</div>
+							<div class="pageSubSubTitle">右ブランク</div>
+							<div class="pageSubSubContent">
+								次の子音の直前に置く。ただし、s,sy,h,hy,f系の場合右ブランクは左寄りに置く。<br>
+								語尾の場合は右の無音を多めに含むように置く。ただし収録ノイズがある場合はそれ含めないように置く。
+							</div>
+							<div class="pageSubSubContent">
+								<br>
+								※「初期値」は出力された原音設定用のoto.iniの初期値のことです。<br>
+								<br>
+							</div>
+							例：語頭(子音が長い場合、s,sy,h,hy,f系)<br>
+							<img src="img/原音設定規則_- はn.PNG" width="100%"><br>
+							例：語頭(子音が短い場合)<br>
+							<img src="img/原音設定規則_- こk2.PNG" width="100%"><br>
+							例：語頭(子音が短い場合、母音)<br>
+							<img src="img/原音設定規則_- うr.PNG" width="100%"><br>
+							例：語中(右の子音がs,sy,h,hy,f系の場合右ブランクは左寄り)<br>
+							<img src="img/原音設定規則_a なs.PNG" width="100%"><br>
+							例：語中(右の子音の発音前に無音が入る系)<br>
+							<img src="img/原音設定規則_o おb2.PNG" width="100%"><br>
+							例：語中(右の子音の発音前に無音が入らない系)<br>
+							<img src="img/原音設定規則_o あr.PNG" width="100%"><br>
+							例：語尾<br>
+							<img src="img/原音設定規則_e えR.PNG" width="100%"><br>
+							例：促音前(促音部分が無音の場合、右ブランクは促音部分を越えて次の子音の直前)<br>
+							<img src="img/原音設定規則_a はQpy.PNG" width="100%"><br>
+							例：促音後(促音部分が無音の場合)<br>
+							<img src="img/原音設定規則_aQ ぴゃk.PNG" width="100%"><br>
+							例：促音前後(促音部分が子音の場合、オーバーラップは子音の中央)<br>
+							<img src="img/原音設定規則_aQ さQsy.PNG" width="100%"><br>
+
+							<div class="pageSubTitle">例外形</div>
+							エイリアスの書き換えに注意してください。<br>
+							<div class="pageSubSubTitle">無声化（母音欠落）　s,sy,h,hy,f系</div>
+							<div class="pageSubSubContent">
+								左ブランクを子音の始まりに置き、他は初期値。<br>
+								<img src="img/原音設定規則_a すCy.PNG" width="100%"><br>
+								右が母音で母音が同じ場合は右ブランクを伸ばしてもよい。<br>
+								<img src="img/原音設定規則_i しCi.PNG" width="100%"><br>
+								母音がない場合の例<br>
+								<img src="img/原音設定規則_i すCt.PNG" width="100%"><br>
+								上記の次の音素の例<br>
+								<img src="img/原音設定規則_s とR.PNG" width="100%"><br>
+							</div>
+							<div class="pageSubSubTitle">無声化（母音欠落）　t,cy,ts,k,ky系</div>
+							<div class="pageSubSubContent">
+								オーバーラップを左ブランク⇔オーバーラップ間が短めになるよう置く。<br>
+								先行発声は音のフェードアウトが始まる位置に置く。<br>
+								右ブランクは次の子音の直前に置く。<br>
+								他は初期値。<br>
+								<img src="img/原音設定規則_i くCcy.PNG" width="100%"><br>
+								<img src="img/原音設定規則_k ちCt.PNG" width="100%"><br>
+								右の子音が続いている例(子音の引き伸ばしに寄るノイズ化を避けるため右ブランクを右にずらしている)<br>
+								<img src="img/原音設定規則_o くChy.PNG" width="100%"><br>
+							</div>
 						</div>
 					</div>
 					<div class="page" id="page4">
-						<div class="pageTitle">発音表記対応表　公開停止中</div>
-						<div class="pageContents">
+						<div class="pageTitle">発音表記対応表</div>
+							<div class="pageContents">
+							い段にyを含む以外は一般的な対応であると思われます。
+							<table border="1" cellpadding="5" cellspacing="0">
+<tr>
+  <td>あ</td>
+  <td>a</td>
+  <td><br></td>
+  <td>た</td>
+  <td>ta</td>
+  <td><br></td>
+  <td>ま</td>
+  <td>ma</td>
+  <td><br></td>
+  <td>が</td>
+  <td>ga</td>
+  <td><br></td>
+  <td>ば</td>
+  <td>ba</td>
+  <td><br></td>
+  <td>ヴぁ</td>
+  <td>va</td>
+</tr>
+<tr>
+  <td>い</td>
+  <td>i</td>
+  <td><br></td>
+  <td>ち</td>
+  <td>cyi</td>
+  <td><br></td>
+  <td>み</td>
+  <td>myi</td>
+  <td><br></td>
+  <td>ぎ</td>
+  <td>gyi</td>
+  <td><br></td>
+  <td>び</td>
+  <td>byi</td>
+  <td><br></td>
+  <td>ヴぃ</td>
+  <td>vyi</td>
+</tr>
+<tr>
+  <td>う</td>
+  <td>u</td>
+  <td><br></td>
+  <td>つ</td>
+  <td>tsu</td>
+  <td><br></td>
+  <td>む</td>
+  <td>mu</td>
+  <td><br></td>
+  <td>ぐ</td>
+  <td>gu</td>
+  <td><br></td>
+  <td>ぶ</td>
+  <td>bu</td>
+  <td><br></td>
+  <td>ヴ</td>
+  <td>vu</td>
+</tr>
+<tr>
+  <td>え</td>
+  <td>e</td>
+  <td><br></td>
+  <td>て</td>
+  <td>te</td>
+  <td><br></td>
+  <td>め</td>
+  <td>me</td>
+  <td><br></td>
+  <td>げ</td>
+  <td>ge</td>
+  <td><br></td>
+  <td>べ</td>
+  <td>be</td>
+  <td><br></td>
+  <td>ヴぇ</td>
+  <td>ve</td>
+</tr>
+<tr>
+  <td>お</td>
+  <td>o</td>
+  <td><br></td>
+  <td>と</td>
+  <td>to</td>
+  <td><br></td>
+  <td>も</td>
+  <td>mo</td>
+  <td><br></td>
+  <td>ご</td>
+  <td>go</td>
+  <td><br></td>
+  <td>ぼ</td>
+  <td>bo</td>
+  <td><br></td>
+  <td>ヴぉ</td>
+  <td>vo</td>
+</tr>
+<tr>
+  <td>か</td>
+  <td>ka</td>
+  <td><br></td>
+  <td>ちゃ</td>
+  <td>cya</td>
+  <td><br></td>
+  <td>みゃ</td>
+  <td>mya</td>
+  <td><br></td>
+  <td>ぎゃ</td>
+  <td>gya</td>
+  <td><br></td>
+  <td>びゃ</td>
+  <td>bya</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>き</td>
+  <td>kyi</td>
+  <td><br></td>
+  <td>ちゅ</td>
+  <td>cyu</td>
+  <td><br></td>
+  <td>みゅ</td>
+  <td>myu</td>
+  <td><br></td>
+  <td>ぎゅ</td>
+  <td>gyu</td>
+  <td><br></td>
+  <td>びゅ</td>
+  <td>byu</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>く</td>
+  <td>ku</td>
+  <td><br></td>
+  <td>ちぇ</td>
+  <td>cye</td>
+  <td><br></td>
+  <td>みぇ</td>
+  <td>mye</td>
+  <td><br></td>
+  <td>ぎぇ</td>
+  <td>gye</td>
+  <td><br></td>
+  <td>びぇ</td>
+  <td>bye</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>け</td>
+  <td>ke</td>
+  <td><br></td>
+  <td>ちょ</td>
+  <td>cyo</td>
+  <td><br></td>
+  <td>みょ</td>
+  <td>myo</td>
+  <td><br></td>
+  <td>ぎょ</td>
+  <td>gyo</td>
+  <td><br></td>
+  <td>びょ</td>
+  <td>byo</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>こ</td>
+  <td>ko</td>
+  <td><br></td>
+  <td>てぃ</td>
+  <td>tyi</td>
+  <td><br></td>
+  <td>や</td>
+  <td>ya</td>
+  <td><br></td>
+  <td>ざ</td>
+  <td>za</td>
+  <td><br></td>
+  <td>ぱ</td>
+  <td>pa</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>きゃ</td>
+  <td>kya</td>
+  <td><br></td>
+  <td>とぅ</td>
+  <td>tu</td>
+  <td><br></td>
+  <td>ゆ</td>
+  <td>yu</td>
+  <td><br></td>
+  <td>じ</td>
+  <td>ji</td>
+  <td><br></td>
+  <td>ぴ</td>
+  <td>pyi</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>きゅ</td>
+  <td>kyu</td>
+  <td><br></td>
+  <td>な</td>
+  <td>na</td>
+  <td><br></td>
+  <td>よ</td>
+  <td>yo</td>
+  <td><br></td>
+  <td>ず</td>
+  <td>zu</td>
+  <td><br></td>
+  <td>ぷ</td>
+  <td>pu</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>きぇ</td>
+  <td>kye</td>
+  <td><br></td>
+  <td>に</td>
+  <td>nyi</td>
+  <td><br></td>
+  <td>ら</td>
+  <td>ra</td>
+  <td><br></td>
+  <td>ぜ</td>
+  <td>ze</td>
+  <td><br></td>
+  <td>ぺ</td>
+  <td>pe</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>きょ</td>
+  <td>kyo</td>
+  <td><br></td>
+  <td>ぬ</td>
+  <td>nu</td>
+  <td><br></td>
+  <td>り</td>
+  <td>ryi</td>
+  <td><br></td>
+  <td>ぞ</td>
+  <td>zo</td>
+  <td><br></td>
+  <td>ぽ</td>
+  <td>po</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>さ</td>
+  <td>sa</td>
+  <td><br></td>
+  <td>ね</td>
+  <td>ne</td>
+  <td><br></td>
+  <td>る</td>
+  <td>ru</td>
+  <td><br></td>
+  <td>じゃ</td>
+  <td>ja</td>
+  <td><br></td>
+  <td>ぴゃ</td>
+  <td>pya</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>し</td>
+  <td>syi</td>
+  <td><br></td>
+  <td>の</td>
+  <td>no</td>
+  <td><br></td>
+  <td>れ</td>
+  <td>re</td>
+  <td><br></td>
+  <td>じゅ</td>
+  <td>ju</td>
+  <td><br></td>
+  <td>ぴゅ</td>
+  <td>pyu</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>す</td>
+  <td>su</td>
+  <td><br></td>
+  <td>にゃ</td>
+  <td>nya</td>
+  <td><br></td>
+  <td>ろ</td>
+  <td>ro</td>
+  <td><br></td>
+  <td>じぇ</td>
+  <td>je</td>
+  <td><br></td>
+  <td>ぴぇ</td>
+  <td>pye</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>せ</td>
+  <td>se</td>
+  <td><br></td>
+  <td>にゅ</td>
+  <td>nyu</td>
+  <td><br></td>
+  <td>りゃ</td>
+  <td>rya</td>
+  <td><br></td>
+  <td>じょ</td>
+  <td>jo</td>
+  <td><br></td>
+  <td>ぴょ</td>
+  <td>pyo</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>そ</td>
+  <td>so</td>
+  <td><br></td>
+  <td>にぇ</td>
+  <td>nye</td>
+  <td><br></td>
+  <td>りゅ</td>
+  <td>ryu</td>
+  <td><br></td>
+  <td>だ</td>
+  <td>da</td>
+  <td><br></td>
+  <td>ふぁ</td>
+  <td>fa</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>しゃ</td>
+  <td>sya</td>
+  <td><br></td>
+  <td>にょ</td>
+  <td>nyo</td>
+  <td><br></td>
+  <td>りぇ</td>
+  <td>rye</td>
+  <td><br></td>
+  <td>で</td>
+  <td>de</td>
+  <td><br></td>
+  <td>ふぃ</td>
+  <td>fi</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>しゅ</td>
+  <td>syu</td>
+  <td><br></td>
+  <td>は</td>
+  <td>ha</td>
+  <td><br></td>
+  <td>りょ</td>
+  <td>ryo</td>
+  <td><br></td>
+  <td>ど</td>
+  <td>do</td>
+  <td><br></td>
+  <td>ふぇ</td>
+  <td>fe</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>しぇ</td>
+  <td>sye</td>
+  <td><br></td>
+  <td>ひ</td>
+  <td>hyi</td>
+  <td><br></td>
+  <td>わ</td>
+  <td>wa</td>
+  <td><br></td>
+  <td>でぃ</td>
+  <td>dyi</td>
+  <td><br></td>
+  <td>ふぉ</td>
+  <td>fo</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td>しょ</td>
+  <td>syo</td>
+  <td><br></td>
+  <td>ふ</td>
+  <td>fu</td>
+  <td><br></td>
+  <td>を</td>
+  <td>wo</td>
+  <td><br></td>
+  <td>どぅ</td>
+  <td>du</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>へ</td>
+  <td>he</td>
+  <td><br></td>
+  <td>ん</td>
+  <td>nn</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>ほ</td>
+  <td>ho</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>ひゃ</td>
+  <td>hya</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>ひゅ</td>
+  <td>hyu</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>ひぇ</td>
+  <td>hye</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+<tr>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td>ひょ</td>
+  <td>hyo</td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+  <td><br></td>
+</tr>
+</table>
+
 						</div>
 					</div>
 					<div class="page" id="page5">
@@ -94,42 +780,123 @@
 						</div>
 					</div>
 					<div class="page" id="page6">
-						<div class="pageTitle">音源使用方法　一部公開停止中</div>
+						<div class="pageTitle">音源使用方法</div>
 						<div class="pageContents">
-						HANASU用VCVC音源はCVtoVCVCwithAIというエイリアス推定プラグインを使用することを前提としています。HANASU用VCVC音源紹介ページからダウンロードできます。
+						HANASU用VCVC音源はCVtoVCVCwithAIというエイリアス推定プラグインを使用することを前提としています。HANASU用VCVC音源紹介ページからダウンロードできます。<br>
+						<br>
+						<img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源使用方法_プラグイン1.PNG">
+						<div style="text-align: center;">※画像は開発中のものです。</div>
 						<div class="pageSubTitle">エイリアス推定</div>
 							単独音エイリアス（接頭辞接尾辞が無いひらがな）でしゃべらせたいノートを並べ、そのノートを選択し、CVtoVCVCwithAIを立ち上げ、推定実行 ボタンをクリックすると、単独音エイリアスからVCVCエイリアスへ推定、変換が行われます。既存の単独音→連続音変換器のように使えると思われます。<br>
-							<span style="text-decoration: line-through;">※促音は「Q」で入力するとより正しく推定が行われます。</span><br>
-							※CVtoVCVCwithAI - Ver.0.3.0以降だと、「っ」を自動で「Q」に置き換えます。
 							<div class="pageSubSubTitle">長音「－」のノートの置き方</div>
 							<div class="pageSubSubContent">
 								HANASU用VCVC音源は原音が非常に短いため、長音を調声する場合は、一つのノートを伸ばすのではなく、母音ノートを新たに置くことを推奨します。また、長音を含む原音のパターンが当てはまると、より良い推定結果となることが予測されます。
 							</div>
+							<div class="pageSubSubTitle">促音「っ」のノートの置き方</div>
+							<div class="pageSubSubContent">
+								そのまま「っ」で置いてください。プラグイン実行後に「Q」に置き換えられます。
+							</div>
 							<div class="pageSubSubTitle">曖昧検索する</div>
 							<div class="pageSubSubContent">
-								曖昧検索する にチェックを入れると、完全一致検索以外に、部分検索することが可能になります。<br>
+								曖昧検索する にチェックを入れると、完全一致検索以外に、部分検索することが可能になります。通常チェックを入れっぱなしで大丈夫です。<br>
+								チェックをはずして使用すると、学習したことがある並びと完全一致(CVCVCV)するものの検索のみが行えます。
 							</div>
 							<div class="pageSubSubTitle">使用例</div>
 							エイリアス推定前<br>
 							<img src="img/使用例1.PNG" width="100%"><br>
 							エイリアス推定後<br>
 							<img src="img/使用例2.PNG" width="100%"><br>
+						<div class="pageSubTitle">学習</div>
+							<div class="pageSubSubTitle">oto.iniから学習</div>
+							<div class="pageSubSubContent">
+								音源製作者サイド向けの機能です。通常使用されませんが、原音を追加した際に上の 学習元oto.iniファイル のテキストボックスにファイルをドラッグ＆ドロップで指定し、 oto.iniから学習 ボタンをクリックすることでoto.iniファイルからの学習を学習記録ファイルに追記することが出来ます。<br>
+								※追加するエイリアス・oto.iniは、原音設定規則のoto.iniの制約に準じている必要があります。<br>
+							</div>
+							<div class="pageSubSubTitle">読み込みustから学習</div>
+							<div class="pageSubSubContent">
+								エイリアス推定後の調声でエイリアスの書き換えを行った場合、書き換えたノートを選択してCVtoVCVCwithAIを起動、 読み込みustから学習 ボタンをクリックすることで、学習記録ファイルに書き換えたエイリアスを追記することが出来ます。<br>
+								この学習を行うと、次のエイリアス推定時に書き換えを行ったエイリアスを優先して選択させることが出来ます。
+							</div>
+						<div class="pageSubTitle">音源情報</div>
+						音源情報を確認 ボタンから、音源の情報を確認することが出来ます。<br>
+						※入力は音源提供者の任意なので、簡易利用規約に記載がない場合もあります。<br>
+						<img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源使用方法_プラグイン2.PNG">
+						<div style="text-align: center;">※画像は開発中のものです。</div>
+						</div>
+						<br>
+						<br>
+						<div class="pageTitle">Advance</div>
+						<div class="pageContents">
+						CVtoVCVCwithAI以外のツールもまとめて使用する、開発者が提案するHANASU調声の環境。<br>
+						単独音・れんたん・連続音・HANASU用VCVCに対応します。<br>
+						(2017/11/21現在)<br>
+						<img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源使用方法_推奨環境1.PNG">
+						<div style="text-align: center;">※画像は開発中のものです。</div>
+						<div class="pageSubTitle">UWSCWrapper + 専用スクリプトで使用できるようになるショートカット</div>
+						<img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源使用方法_推奨環境2.PNG">
+						<div style="text-align: center;">※画像は開発中のものです。</div>
+						<div class="pageSubTitle">必須環境</div>
+						HANASU用VCVCのみ対応するためには以下のプラグインがインストールが必須です。<br>
+						・CVtoVCVCwithAI<br>
+						・VCVCAliasSelector<br>
+						・GachiHana<br>
+						・UWSCWrapper + 専用スクリプト<br>
+						<div class="pageSubSubTitle">使用方法</div>
+						<div class="pageSubSubContent">
+								1. UWSCWrapperを立ち上げ、専用スクリプトを読み込ませて起動ボタンを押す。<br>
+								<img src="img/音源使用方法_AdvanceUWSCVCVC.PNG"><br>
+								2. キーボードの「1」を押す。推奨エディタ設定になります。<br>
+								<img src="img/音源使用方法_Advance1.PNG"><br>
+								3. HANASUさせたい言葉をひらがなノートで抑揚（音程）をつけて配置し選択状態にする。<br>
+								<img src="img/音源使用方法_Advanceノートの配置VCVC.PNG" width="100%"><br>
+								4. キーボードの「F2」を押す。GachiHana(ノートの長さとかいろいろをうにゃうにゃするやつ)実行後エイリアスが変換され、クロスフェードがかかります。<br>
+								<img src="img/音源使用方法_AdvanceF2.PNG" width="100%"><br>
+								自動調声完了(試聴して微調整)<br>
+								5. ustを保存したい場合は保存したい場合はキーボードの「4」、wavを保存したい場合はキーボードの「5」を押す。<br>
+								以降は3,4,5のループ<br>
+								ext. エイリアスを学習させたい場合はキーボードの「F3」を押す。次のVCVCエイリアス候補を選択させたい場合はキーボードの「F4」を押す。
+							</div>
+						<div class="pageSubTitle">推奨環境</div>
+						単独音・れんたん・連続音対応、HANASUボイス集の機能などのUWSCWrapper + 専用スクリプトのショートカットをすべて使用する為には以下のプラグインの追加インストールが必要です。<br>
+						・HANASUボイス集から読み込み<br>
+						・語尾を上げる<br>
+						・VCVtoCV(未公開)<br>
+						・歌詞を連続音にする by 564 さま<br>
+						・連続音を単独音化(STP等削除) by 遊牧家族 さま<br>
+						</div>
+						<div class="pageSubSubTitle">使用方法</div>
+						<div class="pageSubSubContent">
+								単独音・れんたん・連続音の場合上記「4. キーボードの「F2」を押す。」が「4. キーボードの「2」を押す。」に置き換わります。<br>
+								そのほか、キーボードの「F1」を押すとショートカット一覧が表示されます。<br>
+								ext. ショートカットのキーは使用するスクリプトファイルの記述を書き換えることで変えることができます。また、スクリプトファイルに新しい処理を記述することで新しいショートカットを追加することも出来ます。記述の方法は「UWSC」で検索してみてください。<br>
 						</div>
 					</div>
 					<div class="page" id="page7">
 						<div class="pageTitle">参考動画等</div>
 						<div class="pageContents">
+							コメントとかコメントとかコメントとかお待ちしております。
 							<div class="pageSubTitle">デモ@ニコニコ動画</div>
 							<div class="pageSubSubContent">
-							<a href="http://www.nicovideo.jp/watch/sm29756999">【ニコニコ動画】【UTAU】HANASU用VCVC音源デモ【VCVC？】</a>
+								一番最初のデモ動画です。HANE1.0以降とは原音設定規則が少々異なります。<br>
+								<a href="http://www.nicovideo.jp/watch/sm29756999">【ニコニコ動画】【UTAU】HANASU用VCVC音源デモ【VCVC？】</a>
+								<script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm29756999/script?w=640&h=360"></script>
+								<noscript><a href="http://www.nicovideo.jp/watch/sm29756999">【UTAU】HANASU用VCVC音源デモ【VCVC？】</a></noscript>
 							</div>
 							<div class="pageSubTitle">導入使い方@ニコニコ動画</div>
 							<div class="pageSubSubContent">
-							<a href="http://www.nicovideo.jp/watch/sm29933464">【ニコニコ動画】【HANASU用VCVC音源】導入と使い方【UTAU】</a>
+								0.9.9beta0以前のものです。0.9.9beta0以降は、学習記録ファイルの設定が自動化されています。<br>
+								<a href="http://www.nicovideo.jp/watch/sm29933464">【ニコニコ動画】【HANASU用VCVC音源】導入と使い方【UTAU】</a>
+								<script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm29933464/script?w=640&h=360"></script>
+								<noscript><a href="http://www.nicovideo.jp/watch/sm29933464">【HANASU用VCVC音源】導入と使い方【UTAU】</a></noscript>
 							</div>
 							<div class="pageSubTitle">歌に使った例（推奨はされない）@ニコニコ動画</div>
 							<div class="pageSubSubContent">
-							<a href="http://www.nicovideo.jp/watch/sm29912785">【ニコニコ動画】【南極リョク】ゴーストルール【UTAUカバー】</a>
+								2:12～「足りないもの～」のパートにHANASU用VCVC音源が使用されています。<br>
+								<a href="http://www.nicovideo.jp/watch/sm29912785">【ニコニコ動画】【南極リョク】ゴーストルール【UTAUカバー】</a>
+								<script type="application/javascript" src="https://embed.nicovideo.jp/watch/sm29912785/script?w=640&h=360"></script>
+								<noscript><a href="http://www.nicovideo.jp/watch/sm29912785">【南極リョク】ゴーストルール【UTAUカバー】</a></noscript><br>
+								ust@twitter<br>
+								<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">HANASU用VCVC音源はこの辺。<br>南極リョクさんのは比較的ゆっくりなテンポの音源だから、発音の濁りはあまり目立たなかったね。とりあえず伸ばしすぎ注意。<br>（歌調声推奨しないといいつつ使ってくスタイル･･･。） <a href="https://t.co/vC3cib6Beh">pic.twitter.com/vC3cib6Beh</a></p>&mdash; Haruqa (@niconicoHaruqa) <a href="https://twitter.com/niconicoHaruqa/status/791265931057954816?ref_src=twsrc%5Etfw">2016年10月26日</a></blockquote>
 							</div>
 							<div class="pageSubTitle">連続音とHANASU用VCVC音源の比較画像@twitter</div>
 							<div class="pageSubSubContent">
@@ -169,7 +936,7 @@
 								・バックアップ機能（ファイルあて先：UTAU\plugins\CVtoVCVCwithAI\学習記録フォルダ\[音源名][日付].back)<br>
 								・技術情報ファイル（technicalInfo.bin）のビュアー<br>
 								・技術情報ファイルの電子署名の検証<br>
-								・技術情報ファイル（technicalInfo.bin）が存在しない場合、旧バージョンのプラグインへの誘導<br>
+								・HANE1.0に対応していない場合、旧バージョンのプラグインへの誘導<br>
 							</div>
 							<div class="pageSubTitle">HANASU用VCVC音源マニュアル - Ver.2.0.0　2017年内と順次</div>
 							<div class="pageSubSubTitle">音源使用と理解に必要な以下のページの更新と公開　2017年内</div>
