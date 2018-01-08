@@ -1,7 +1,14 @@
 /*
 * Copyright Haruqa
-* Version 1.0.0
+* Version 1.0.1
 * Do Not Modify
+*/
+
+/*
+* 2018/01/08 1.0.1
+* #4A2 → #2A6
+* #5B3 → #2A6
+* #280 → #2A6
 */
 
 body{
@@ -22,12 +29,12 @@ body{
 }
 
 a{
-	color: #5B3;
+	color: #2A6;
 	text-decoration: none;
 }
 
 a:visited{
-	color: #280;
+	color: #2A6;
 	text-decoration: none;
 }
 
@@ -84,7 +91,7 @@ hr{
 	margin: 0;
 	padding: 0;
 	height: 1px;
-	background-color: #4A2;
+	background-color: #2A6;
 	border: none;
 	display: none;
 }
@@ -110,7 +117,7 @@ hr{
 
 .pageTitle{
 	font-size: 22px;
-	border-bottom: solid 2px #4A2;
+	border-bottom: solid 2px #2A6;
 	margin: 10px 0 20px 0;
 }
 
@@ -120,7 +127,7 @@ hr{
 
 .pageSubTitle{
 	font-size: 18px;
-	border-left: solid 5px #4A2;
+	border-left: solid 5px #2A6;
 	padding-left: 10px;
 	margin-top: 50px;
 	font-style: bold;
@@ -131,7 +138,7 @@ hr{
 }
 
 .pageSubSubTitle{
-	border-left: solid 3px #4A2;
+	border-left: solid 3px #2A6;
 	padding-left: 10px;
 	margin: 20px 0 0 15px;
 }
@@ -144,21 +151,21 @@ hr{
 	margin: 5px;
 	padding: 2px;
 	text-align: center;
-	border: solid 2px #4A2;
+	border: solid 2px #2A6;
 }
 
 .pageSubSubContent .codeBox{
 	margin: 5px;
 	padding: 2px;
 	text-align: center;
-	border: solid 1px #4A2;
+	border: solid 1px #2A6;
 }
 
 .codeBoxPre{
 	margin: 5px;
 	padding: 0 5px;
 	text-align: left;
-	border: solid 1px #4A2;
+	border: solid 1px #2A6;
 }
 
 .fLeft{
@@ -212,5 +219,5 @@ table,th,td {
 
 #toUpBtn:hover{
 	opacity: 1;
-	border-color: #4A2;
+	border-color: #2A6;
 }
