@@ -23,7 +23,7 @@
 					<ul>
 						<!-- li#menu${<hr>} -->
 						<li id="menu1">HANASU用VCVC音源とは<hr></li>
-						<li id="menu2">録音方法<hr></li>
+						<li id="menu2">収録方法<hr></li>
 						<li id="menu3">原音設定規則<hr></li>
 						<li id="menu4">発音表記対応表<hr></li>
 						<li id="menu5">音源セットアップ<hr></li>
@@ -64,7 +64,7 @@
 							2016/09/25 Ver.1.1.1 誤字修正<br>
 							2016/09/25 Ver.1.2.0 コンテンツ追加、表現修正<br>
 							2017/06/27 一時ファイルへ差し替え 一部公開停止中<br>
-							2017/10/01 - Ver.2.0.0 CVtoVCVCwithAI - Ver.1.0.0(メジャーバージョン) 開発コードHANE1.0へ切り替えに伴い更新中<br>
+							2017/10/01 - 2018/01/08 Ver.2.0.0 CVtoVCVCwithAI - Ver.1.0.0(メジャーバージョン) 開発コードHANE1.0へ切り替え 更新完了<br>
 						</div>
 					</div>
 					<div class="page" id="page1" >
@@ -76,8 +76,75 @@
 						</div>
 					</div>
 					<div class="page" id="page2">
-						<div class="pageTitle">録音方法 公開停止中</div>
-						<div class="pageContents">
+						<div class="pageTitle">収録方法</div>
+            <div class="pageContents">
+              収録はOREMOを使って行います。文の読み上げとなるため、ガイド音声はありません。OREMOの設定、音名リストの読み込み、読み仮名のコメント表示等が自動で行えるため、公開している音源作成支援ツールを経由してOREMOを使用することをお勧めします。<br>
+              録音リストはHaruqaが開発公開中のもののほか、自分で作成することが出来ます。<br>
+              <div class="pageSubTitle">録音リスト</div>
+              Haruqaが作成したものはHANASU用VCVC音源紹介ページからリンクをたどると見つけることが出来ます。<br>
+              また、録音リストや原音設定用のファイルを生成するための支援ツールは音源作成支援ツール(HANASUyoVCVCutility.exe)に組み込まれて公開しています。生成した録音リストは自由に公開できるので、よりよい録音リストを研究していただけると幸いです。
+              <br>
+              <div class="pageSubSubTitle">録音リスト作成時の注意事項</div>
+              <div class="pageSubSubContent">
+                一文中に間（句読点等による空白）は入れてはいけません。エイリアス推定プラグインにおける、oto.iniからの学習時に不具合を発生させます。<br>
+                同様にして、ブレスが必要になるほどの長さの文は避けてください。<br>
+              </div>
+              <div class="pageSubSubTitle">録音リストの公開</div>
+              <div class="pageSubSubContent">
+                HANASU用VCVC音源の録音リストの公開時は「録音リスト」「音名リスト」「oto.ini」を同時に公開することをお勧めします。<br>
+                録音リスト：音源作成支援ツールで使用される漢字かな混ざり文、ひらがな読み、エイリアスが含まれた専用テキストファイルです。<br>
+                音名リスト：OREMOにて使用する音名リストです。<br>
+                oto.ini：setParamで設定する原音設定ファイルです。<br>
+              </div>
+              <div class="pageSubSubTitle">音名リストの読み方</div>
+              <div class="pageSubSubContent">
+                音源作成支援ツールの収録機能を用いるとOREMOのコメント部分に読み仮名が表示されます。<br>
+                そのほか、配布されている音名リストを直接OREMOに読み込むと、音名リストは漢字かな混ざり文であるため、読み方が不明な場合があります。その場合は、配布されているであろう専用テキストファイル「録音リスト」を参照いただくと、判明すると思われます。<br>
+                「録音リスト」はCVS形式のファイルなので、CVSファイルビュアーを用いると、見やすいと思われます。
+              </div>
+              <div class="pageSubTitle">録音のポイント</div>
+              <div class="pageSubSubTitle">自然な発音で読む（鼻濁音とかは意識しなくて良いです、無声化も自然に）</div>
+              <div class="pageSubSubContent">
+              →発音はそのまま合成結果に反映されます。<br>
+              自然な発音かどうか分かり辛いときは、自然な速さで読み上げた波形と見比べてみると分かるかもしれません。</div>
+              <div class="pageSubSubTitle">ゆっくり読む（BPM100の16分音符くらい）</div>
+              <div class="pageSubSubContent">
+              →ゆっくり読むことで、原音設定の矛盾を予防し原音設定が容易になること、合成時の引き伸ばし劣化の回避、発音の明確化が期待できます。<br>
+              テンポは一長一短であり、録音者（原音設定を外部に依頼するときは原音設定者にも）に委ねます。<br>
+              傾向：<br>
+              テンポが遅い：調整時に素直に発音する⇔無声化パターンが乱れる傾向がある→原音設定である程度吸収することは出来る。<br>テンポが速い：調整時に発音が濁る⇔無声化パターンが一定、引き伸ばし劣化に弱い→発音の濁りはある程度エイリアス名でカバー出来る。<br>
+              </div>
+              <div class="pageSubSubTitle">テンポを安定させること</div>
+              <div class="pageSubSubContent">
+              →テンポが途中で変化すると、前述のように原音設定に矛盾を発生させる原因となります。</div>
+              <div class="pageSubSubTitle">間を空けずに読む</div>
+              <div class="pageSubSubContent">
+              →母音と子音間の空白を減らし、より滑らかな合成結果が期待できます。文途中のブレスも厳禁です。無理に母音と子音を詰める必要はありません。</div>
+              <div class="pageSubSubTitle">高低アクセント・ピッチ変化（イントネーション）は普通にしゃべるときと同じく、もしくは抑え気味に</div>
+              <div class="pageSubSubContent">
+              →完全に棒読みにしてしまうと、発音に不自然さが現れます。しかし、ピッチの振れ幅が広すぎると声質に差異が生じてしまいます。</div>
+              <div class="pageSubSubTitle">声量（抑揚）を安定させること</div>
+              <div class="pageSubSubContent">
+              →強い強弱アクセントは声質を変えてしまうとともに、周波数表破綻の原因となります。不自然にならない程度に安定させてください。</div>
+              <div class="pageSubSubTitle">声質を安定させること</div>
+              <div class="pageSubSubContent">
+              →声質に極端な差が有ると、合成時に滑らかに音素を繋ぐことが難しくなります。</div>
+              <div class="pageSubTitle">音源作成支援ツールを用いた収録方法</div>
+              <div class="pageSubSubTitle">音源作成支援ツール初期設定</div>
+              <div class="pageSubSubContent">
+                HANASUyoVCVCutility.exeを起動し、最初の画面でOREMOとsetParamを設定します。それぞれ実行ファイル(exeファイル)をドラッグ＆ドロップで設定してください。<br>
+                <img style="display: block;margin-right: auto;margin-left: auto;" src="img/収録方法_支援ツール.PNG">
+                <div style="text-align: center;">※画像は開発中のものです。</div>
+                OREMO、setParamそれぞれに初期設定(～-init.tclファイル)が存在すると、それらを読み込みますが、音源作成支援ツールを経由して起動したもので初期設定を保存しても、起動もしくは録音リストを変更した際に消去されるのでご注意ください。<br>
+                また、それぞれもとの実行ファイルが起動できる状態でない場合(フォルダにexeファイルのみが保存されている状態など)は起動できないためご注意ください。<br>
+                <br>
+                <img style="display: block;margin-right: auto;margin-left: auto;" src="img/収録方法_原音収録・設定.PNG">
+                <div style="text-align: center;">※画像は開発中のものです。</div>
+                「原音収録・設定」ボタンをクリックすると「原音収録・設定」の別の画面が開きます。使用するVCVCコア録音リストをドラッグ＆ドロップで設定してください。
+                <img width="100%" style="display: block;margin-right: auto;margin-left: auto;" src="img/収録方法_OREMO.PNG"><br>
+                収録の「VCVCコア録音リスト」ボタンを押すと、OREMOが開きます。上記の録音方法・録音のポイント等を参考に収録してください。<br>
+                収録した原音は「原音収録・設定」画面の保存先フォルダ以下に保存されます。保存先フォルダは画面を開くと同時に開いた日時を元に自動でフォルダ名が決定されますが、任意に変更できます。
+              </div>
 						</div>
 					</div>
 					<div class="page" id="page3">
@@ -776,8 +843,36 @@
 						</div>
 					</div>
 					<div class="page" id="page5">
-						<div class="pageTitle">音源セットアップ　順次公開予定</div>
+						<div class="pageTitle">音源セットアップ</div>
 						<div class="pageContents">
+              音源のセットアップはエイリアス推定プラグイン(CVtoVCVCwithAI)1.0.0以降(HANE1.0以降)に対応させる場合、音源作成支援ツール(HANASUyoVCVCutility.exe)の使用が必須です。
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/収録方法_支援ツール.PNG">
+            <div style="text-align: center;">※画像は開発中のものです。</div>
+            <div class="pageSubTitle">セットアップ</div>
+            <div class="pageSubSubContent">
+              「セットアップ」ボタンをクリックすると、「セットアップ・音源情報編集」の画面が開きます。
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_セットアップツール初期画面.PNG"><br>
+              それぞれ入力を行ってください。「*」がついている項目は必須入力です。それぞれカーソルを上に載せて待つと説明の吹き出しが表示されるものがあります。参考にしてみてください。<br>
+              音源フォルダ、特殊音素の使い方部分はドラッグ＆ドロップで設定できます。<br>
+              入力例は以下<br>
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_セットアップツール入力例.PNG"><br>
+              すべて入力し、間違いが無いことを確認したら、「実行」ボタンを押してください。しばらく待つと以下の完了メッセージが出力されます。<br>
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_完了メッセージ.PNG"><br>
+              セットアップされた音源をUTAUに読み込み、動作を確認してください。上の入力例の音源を読み込みプラグインで「音源情報」を表示させると以下のようになります。<br>
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_プラグイン音源情報.PNG"><br>
+            </div>
+          </div>
+          <br>
+          <br>
+          <div class="pageTitle">Advance</div>
+          <div class="pageContents">
+            <div class="pageSubTitle">学習記録ファイルの調整</div>
+            <div class="pageSubSubContent">
+              配布前にプラグインのustから学習等、追加学習を行った結果を配布する音源に適応させたい場合は、プラグインに設定されている「学習記録ファイル」
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_プラグイン画面.PNG"><br>
+              をコピーし、ファイル名を「learningRecord.ini」に書き換え、音源の「HANE」フォルダ以下にある、「learningRecord.ini」へ上書き保存してください。
+              <img style="display: block;margin-right: auto;margin-left: auto;" src="img/音源セットアップ_HANEフォルダ.PNG"><br>
+            </div>
 						</div>
 					</div>
 					<div class="page" id="page6">
@@ -954,7 +1049,7 @@
 							</div>
 							<div class="pageSubSubTitle">音源作成に必要な以下のページの更新・追加と公開　順次</div>
 							<div class="pageSubSubContent">
-								・録音方法<br>
+								・収録方法<br>
 								・音源セットアップ<br>
 							</div>
 							<div class="pageSubTitle">音源作成支援ツール 順次</div>
